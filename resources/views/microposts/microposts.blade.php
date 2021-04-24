@@ -1,3 +1,4 @@
+
 @if (count($microposts) > 0)
     <ul class="list-unstyled">
         @foreach ($microposts as $micropost)
@@ -18,9 +19,16 @@
                         @if (Auth::id() == $micropost->user_id)
                             {{-- 投稿削除ボタンのフォーム --}}
                             {!! Form::open(['route' => ['microposts.destroy', $micropost->id], 'method' => 'delete']) !!}
-                                {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
+                                {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm mt-2']) !!}
                             {!! Form::close() !!}
                         @endif
+                    </div>
+                    <div>
+                    {{-- お気に入り／解除ボタン --}}
+                   @include('user_follow.favorite_button')
+                    </div>
+                    <div>
+                        
                     </div>
                 </div>
             </li>
